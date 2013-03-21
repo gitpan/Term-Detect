@@ -1,0 +1,30 @@
+NAME
+    Term::Detect - Detect if program is running under terminal
+
+VERSION
+    version 0.01
+
+SYNOPSIS
+     use Term::Detect qw(detect_terminal);
+     say "Running under terminal" if detect_terminal();
+
+DESCRIPTION
+FUNCTIONS
+  detect_terminal() => ANY
+    Return undef if not detected running under terminal.
+
+    Return a true value otherwise.
+
+TODO
+    *   Option to provide more information, e.g. Term::Encoding, Term::Cap
+
+SEE ALSO
+AUTHOR
+    Steven Haryanto <stevenharyanto@gmail.com>
+
+COPYRIGHT AND LICENSE
+    This software is copyright (c) 2013 by Steven Haryanto.
+
+    This is free software; you can redistribute it and/or modify it under
+    the same terms as the Perl 5 programming language system itself.
+
