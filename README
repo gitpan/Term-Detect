@@ -1,8 +1,9 @@
 NAME
-    Term::Detect - Detect if program is running under terminal
+    Term::Detect - Detect running under terminal (and get terminal emulator
+    information)
 
 VERSION
-    version 0.01
+    version 0.02
 
 SYNOPSIS
      use Term::Detect qw(detect_terminal);
@@ -10,13 +11,34 @@ SYNOPSIS
 
 DESCRIPTION
 FUNCTIONS
-  detect_terminal() => ANY
+  detect_terminal([$flag]) => ANY
     Return undef if not detected running under terminal.
 
-    Return a true value otherwise.
+    Otherwise, return a hash of information, currently includes:
 
-TODO
-    *   Option to provide more information, e.g. Term::Encoding, Term::Cap
+    *   emulator_engine => STR
+
+    *   emulator_software => STR
+
+        Currently Konsole and xterm can be detected through environment
+        because they publish some environment variables.
+
+        If $flag contains "p", will execute "pstree" to try to find out
+        emulator software from parent process.
+
+    *   color_depth => INT
+
+        Either 0 (does not support ANSI color codes), 16, 256, or 16777216
+        (2**24).
+
+    *   default_bgcolor => STR (6-hexdigit RGB)
+
+        For example, any xterm is assumed to have white background (ffffff)
+        by default, while Konsole is assumed to have black (000000).
+
+    *   unicode => BOOL
+
+        Whether terminal supports Unicode/wide characters.
 
 SEE ALSO
 AUTHOR

@@ -1,5 +1,5 @@
 {
-   "abstract" : "Detect if program is running under terminal",
+   "abstract" : "Detect running under terminal (and get terminal emulator information)",
    "author" : [
       "Steven Haryanto <stevenharyanto@gmail.com>"
    ],
@@ -46,6 +46,6 @@
          "url" : "http://github.com/sharyanto/perl-Term-Detect"
       }
    },
-   "version" : "0.01"
+   "version" : "0.02"
 }
 
