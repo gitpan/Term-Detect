@@ -5,7 +5,7 @@ use strict;
 use warnings;
 use Log::Any '$log';
 
-our $VERSION = '0.02'; # VERSION
+our $VERSION = '0.03'; # VERSION
 
 require Exporter;
 our @ISA       = qw(Exporter);
@@ -13,6 +13,7 @@ our @EXPORT_OK = qw(detect_terminal);
 
 sub detect_terminal {
     my ($flag) = @_;
+    $flag //= "";
 
     return undef unless $ENV{TERM};
 
@@ -99,7 +100,7 @@ Term::Detect - Detect running under terminal (and get terminal emulator informat
 
 =head1 VERSION
 
-version 0.02
+version 0.03
 
 =head1 SYNOPSIS
 
