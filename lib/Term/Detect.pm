@@ -3,9 +3,11 @@ package Term::Detect;
 use 5.010001;
 use strict;
 use warnings;
-use Log::Any '$log';
+#use Log::Any '$log';
 
-our $VERSION = '0.03'; # VERSION
+use SHARYANTO::Proc::Util qw(get_parent_processes);
+
+our $VERSION = '0.04'; # VERSION
 
 require Exporter;
 our @ISA       = qw(Exporter);
@@ -22,10 +24,10 @@ sub detect_terminal {
   DETECT:
     {
         if ($flag =~ /p/) {
-            my $out = `pstree -As $$`;
-            my @p = split /---/, $out;
-            my $proc = $p[-4] // ''; # -1 is pstree, -2 is perl, -3 is shell
-            #say "D:out=$out, proc=$proc";
+            my $ppids = get_parent_processes();
+            # 0 is shell
+            my $proc = $ppids && @$ppids >= 1 ? $ppids->[1]{name} : '';
+            #say "D:proc=$proc";
             if ($proc ~~ [qw/gnome-terminal guake xfce4-terminal mlterm lxterminal/]) {
                 $info->{emulator_software} = $proc;
                 $info->{emulator_engine}   = 'gnome-terminal';
@@ -100,7 +102,7 @@ Term::Detect - Detect running under terminal (and get terminal emulator informat
 
 =head1 VERSION
 
-version 0.03
+version 0.04
 
 =head1 SYNOPSIS
 
