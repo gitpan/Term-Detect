@@ -17,13 +17,14 @@ my %module_build_args = (
     "Steven Haryanto <stevenharyanto\@gmail.com>"
   ],
   "dist_name" => "Term-Detect",
-  "dist_version" => "0.04",
+  "dist_version" => "0.05",
   "license" => "perl",
   "module_name" => "Term::Detect",
   "recommends" => {},
   "recursive_test_files" => 1,
   "requires" => {
     "SHARYANTO::Proc::Util" => "0.44",
+    "experimental" => 0,
     "perl" => "5.010001"
   },
   "script_files" => []

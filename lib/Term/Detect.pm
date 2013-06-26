@@ -1,13 +1,14 @@
 package Term::Detect;
 
 use 5.010001;
+use experimental 'smartmatch';
 use strict;
 use warnings;
 #use Log::Any '$log';
 
 use SHARYANTO::Proc::Util qw(get_parent_processes);
 
-our $VERSION = '0.04'; # VERSION
+our $VERSION = '0.05'; # VERSION
 
 require Exporter;
 our @ISA       = qw(Exporter);
@@ -102,7 +103,7 @@ Term::Detect - Detect running under terminal (and get terminal emulator informat
 
 =head1 VERSION
 
-version 0.04
+version 0.05
 
 =head1 SYNOPSIS
 
@@ -145,6 +146,11 @@ while Konsole is assumed to have black (000000).
 Whether terminal supports Unicode/wide characters.
 
 =back
+
+=head1 TODO
+
+Better detection of terminal emulator's background color by peeking into its
+configuration.
 
 =head1 SEE ALSO
 

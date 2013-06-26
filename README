@@ -3,7 +3,7 @@ NAME
     information)
 
 VERSION
-    version 0.04
+    version 0.05
 
 SYNOPSIS
      use Term::Detect qw(detect_terminal);
@@ -39,6 +39,10 @@ FUNCTIONS
     *   unicode => BOOL
 
         Whether terminal supports Unicode/wide characters.
+
+TODO
+    Better detection of terminal emulator's background color by peeking into
+    its configuration.
 
 SEE ALSO
 AUTHOR
