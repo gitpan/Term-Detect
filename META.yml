@@ -20,4 +20,4 @@ requires:
 resources:
   homepage: http://metacpan.org/release/Term-Detect
   repository: http://github.com/sharyanto/perl-Term-Detect
-version: 0.05
+version: 0.06
