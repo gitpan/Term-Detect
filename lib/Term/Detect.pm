@@ -8,7 +8,7 @@ use experimental 'smartmatch';
 
 use SHARYANTO::Proc::Util qw(get_parent_processes);
 
-our $VERSION = '0.06'; # VERSION
+our $VERSION = '0.07'; # VERSION
 
 require Exporter;
 our @ISA       = qw(Exporter);
@@ -24,7 +24,7 @@ sub detect_terminal {
 
   DETECT:
     {
-        if ($flag =~ /p/) {
+        if ($flag =~ /p/ && $^O !~ /Win/) {
             my $ppids = get_parent_processes();
             # 0 is shell
             my $proc = $ppids && @$ppids >= 1 ? $ppids->[1]{name} : '';
@@ -93,8 +93,8 @@ sub detect_terminal {
 1;
 #ABSTRACT: Detect running under terminal (and get terminal emulator information)
 
-
 __END__
+
 =pod
 
 =head1 NAME
@@ -103,7 +103,7 @@ Term::Detect - Detect running under terminal (and get terminal emulator informat
 
 =head1 VERSION
 
-version 0.06
+version 0.07
 
 =head1 SYNOPSIS
 
@@ -166,4 +166,3 @@ This is free software; you can redistribute it and/or modify it under
 the same terms as the Perl 5 programming language system itself.
 
 =cut
-
