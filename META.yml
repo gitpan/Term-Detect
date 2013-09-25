@@ -1,12 +1,16 @@
 ---
-abstract: 'Detect running under terminal (and get terminal emulator information)'
+abstract: 'Detect running under terminal (and get terminal information)'
 author:
   - 'Steven Haryanto <stevenharyanto@gmail.com>'
-build_requires: {}
+build_requires:
+  File::Spec: 0
+  IO::Handle: 0
+  IPC::Open3: 0
+  Test::More: 0
 configure_requires:
   ExtUtils::MakeMaker: 6.30
 dynamic_config: 0
-generated_by: 'Dist::Zilla version 4.300035, CPAN::Meta::Converter version 2.131560'
+generated_by: 'Dist::Zilla version 4.300035, CPAN::Meta::Converter version 2.132140'
 license: perl
 meta-spec:
   url: http://module-build.sourceforge.net/META-spec-v1.4.html
@@ -19,4 +23,4 @@ requires:
 resources:
   homepage: http://metacpan.org/release/Term-Detect
   repository: http://github.com/sharyanto/perl-Term-Detect
-version: 0.07
+version: 0.08

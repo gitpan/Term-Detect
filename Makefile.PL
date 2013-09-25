@@ -9,7 +9,7 @@ use ExtUtils::MakeMaker 6.30;
 
 
 my %WriteMakefileArgs = (
-  "ABSTRACT" => "Detect running under terminal (and get terminal emulator information)",
+  "ABSTRACT" => "Detect running under terminal (and get terminal information)",
   "AUTHOR" => "Steven Haryanto <stevenharyanto\@gmail.com>",
   "BUILD_REQUIRES" => {},
   "CONFIGURE_REQUIRES" => {
@@ -23,8 +23,13 @@ my %WriteMakefileArgs = (
     "SHARYANTO::Proc::Util" => "0.44",
     "experimental" => 0
   },
-  "TEST_REQUIRES" => {},
-  "VERSION" => "0.07",
+  "TEST_REQUIRES" => {
+    "File::Spec" => 0,
+    "IO::Handle" => 0,
+    "IPC::Open3" => 0,
+    "Test::More" => 0
+  },
+  "VERSION" => "0.08",
   "test" => {
     "TESTS" => "t/*.t"
   }

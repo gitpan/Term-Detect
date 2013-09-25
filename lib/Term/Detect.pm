@@ -8,11 +8,19 @@ use experimental 'smartmatch';
 
 use SHARYANTO::Proc::Util qw(get_parent_processes);
 
-our $VERSION = '0.07'; # VERSION
+our $VERSION = '0.08'; # VERSION
 
 require Exporter;
 our @ISA       = qw(Exporter);
-our @EXPORT_OK = qw(detect_terminal);
+our @EXPORT_OK = qw(detect_terminal detect_terminal_cached);
+
+my $dt_cache;
+sub detect_terminal_cached {
+    if (!$dt_cache) {
+        $dt_cache = detect_terminal(@_);
+    }
+    $dt_cache;
+}
 
 sub detect_terminal {
     my ($flag) = @_;
@@ -86,12 +94,13 @@ sub detect_terminal {
             }
         }
 
-    }
+    } # DETECT
+
     $info;
 }
 
 1;
-#ABSTRACT: Detect running under terminal (and get terminal emulator information)
+#ABSTRACT: Detect running under terminal (and get terminal information)
 
 __END__
 
@@ -99,11 +108,11 @@ __END__
 
 =head1 NAME
 
-Term::Detect - Detect running under terminal (and get terminal emulator information)
+Term::Detect - Detect running under terminal (and get terminal information)
 
 =head1 VERSION
 
-version 0.07
+version 0.08
 
 =head1 SYNOPSIS
 
@@ -116,9 +125,20 @@ version 0.07
 
 =head2 detect_terminal([$flag]) => ANY
 
-Return undef if not detected running under terminal.
+Return undef if not detected running under terminal. Otherwise return a hash of
+information about terminal (emulator software, color depth). Some information
+are only returned if requested via C<$flag>, for performance reason.
 
-Otherwise, return a hash of information, currently includes:
+C<$flag> is a string and can contain one or more characters to enable/request
+extra information. Currently known flags:
+
+=over
+
+=item * p (for parent processes)
+
+=back
+
+Result:
 
 =over
 
@@ -146,6 +166,11 @@ while Konsole is assumed to have black (000000).
 Whether terminal supports Unicode/wide characters.
 
 =back
+
+=head2 detect_terminal_cached([$flag]) => ANY
+
+Just like C<detect_terminal()> but will cache the result. Can be used by
+applications or modules to avoid repeating detection process.
 
 =head1 TODO
 

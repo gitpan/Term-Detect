@@ -1,9 +1,9 @@
 NAME
-    Term::Detect - Detect running under terminal (and get terminal emulator
+    Term::Detect - Detect running under terminal (and get terminal
     information)
 
 VERSION
-    version 0.07
+    version 0.08
 
 SYNOPSIS
      use Term::Detect qw(detect_terminal);
@@ -12,9 +12,17 @@ SYNOPSIS
 DESCRIPTION
 FUNCTIONS
   detect_terminal([$flag]) => ANY
-    Return undef if not detected running under terminal.
+    Return undef if not detected running under terminal. Otherwise return a
+    hash of information about terminal (emulator software, color depth).
+    Some information are only returned if requested via $flag, for
+    performance reason.
 
-    Otherwise, return a hash of information, currently includes:
+    $flag is a string and can contain one or more characters to
+    enable/request extra information. Currently known flags:
+
+    *   p (for parent processes)
+
+    Result:
 
     *   emulator_engine => STR
 
@@ -39,6 +47,10 @@ FUNCTIONS
     *   unicode => BOOL
 
         Whether terminal supports Unicode/wide characters.
+
+  detect_terminal_cached([$flag]) => ANY
+    Just like "detect_terminal()" but will cache the result. Can be used by
+    applications or modules to avoid repeating detection process.
 
 TODO
     Better detection of terminal emulator's background color by peeking into
